@@ -1,55 +1,10 @@
 <app-input (changeStatusAllTasks)="updateAllTasks($event)" [allTasks]="allTasks"></app-input>
 
 <div cdkDropListGroup>
-  <div class="example-container">
-    <div class="example-container__title-todo">
-      <h2>To do</h2>
-      <p class="example-container__value">{{countToDoTask()}}</p>
-    </div>
-    <div cdkDropList
-         class="example-list"
-         (cdkDropListDropped)="dropDown($event, status.ToDo)">
-      <div class="example-box" *ngFor="let task of todo" cdkDrag [cdkDragData]="task"
-           [routerLink]="'/details/'+ task.id">
-        <div class="example-box__text" [routerLink]="'/details/'+ task.id">
-          {{task.name}}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <div class="example-container__title-todo">
-      <h2>In progress</h2>
-      <p class="example-container__value">{{countInProgressTask()}}</p>
-    </div>
-    <div cdkDropList
-         class="example-list"
-         (cdkDropListDropped)="dropDown($event, status.InProgress)">
-      <div class="example-box" *ngFor="let task of inProgress" cdkDrag [cdkDragData]="task">
-        <div class="example-box__text" [routerLink]="'/details/'+ task.id">
-          {{task.name}}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <div class="example-container__title-todo">
-      <h2>Done</h2>
-      <p class="example-container__value">{{countDoneTask()}}</p>
-    </div>
-    <div cdkDropList
-         class="example-list"
-         (cdkDropListDropped)="dropDown($event, status.Done)">
-      <div class="example-box example-box__done" *ngFor="let task of done" cdkDrag [cdkDragData]="task">
-        <div class="example-box__text" [routerLink]="'/details/'+ task.id">
-          {{task.name}}
-        </div>
-        <div class="example-box__button-bin">
-          <img src="../../../assets/bin.svg" (click)="openDialog(task.id)" alt="Delete task">
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-column-tasks [countTask]="countToDoTask()" [allStatus]="todo" [getStatus]="status.ToDo" [allTasks]="allTasks"
+                    [title]="'To Do'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
+  <app-column-tasks [countTask]="countInProgressTask()" [allStatus]="inProgress" [getStatus]="status.InProgress"
+                    [allTasks]="allTasks" [title]="'In Progress'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
+  <app-column-tasks [countTask]="countDoneTask()" [allStatus]="done" [getStatus]="status.Done" [allTasks]="allTasks"
+                    [title]="'Done'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
 </div>

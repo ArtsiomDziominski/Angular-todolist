@@ -7,7 +7,6 @@ import {updateLocalStorage} from "../../../update-local-storage";
 import {MatDialog} from '@angular/material/dialog';
 import {DialogBoxForDeleteComponent} from "../../dialog-box-for-delete/dialog-box-for-delete.component";
 
-
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -17,7 +16,7 @@ import {DialogBoxForDeleteComponent} from "../../dialog-box-for-delete/dialog-bo
 export class DetailComponent {
   public readonly status: typeof Status = Status;
   public taskId: number;
-  public task: any = [];
+  public task?: ITask;
   public allTasks: ITask[] = [];
   public isEditTask: boolean = false;
 
@@ -45,7 +44,7 @@ export class DetailComponent {
     this.router.navigate(['/']);
   }
 
-  public editTask(id: number, name: string) {
+  public editTask(id: number, name: string): void {
     this.isEditTask = !this.isEditTask;
     this.allTasks.find(task => {
       if (Number(task.id) === id) {

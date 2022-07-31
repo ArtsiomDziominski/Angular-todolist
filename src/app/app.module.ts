@@ -20,6 +20,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogBoxForDeleteComponent } from './components/dialog-box-for-delete/dialog-box-for-delete.component';
+import { ColumnTasksComponent } from './components/full-version/column-tasks/column-tasks.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {DialogBoxForDeleteComponent } from './components/dialog-box-for-delete/d
     DetailComponent,
     NotFoundComponent,
     MainComponent,
-    DialogBoxForDeleteComponent
+    DialogBoxForDeleteComponent,
+    ColumnTasksComponent
   ],
   imports: [
     BrowserModule,

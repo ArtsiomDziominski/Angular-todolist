@@ -20,13 +20,9 @@ export class InputComponent {
     this.allTasks = JSON.parse(getListTask);
   }
 
-  public checkDuplicatedTask(name: string): boolean {
-    return this.allTasks.some(task => task.name === name);
-  }
-
   public addTaskToList(name: string): void {
     const newTask: string = name.trim();
-    if (newTask && !this.checkDuplicatedTask(this.task)) {
+    if (newTask) {
       this.isInvalidInput = false;
       const dataTasks: ITask = {
         id: Math.random(),

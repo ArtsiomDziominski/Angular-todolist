@@ -1,0 +1,100 @@
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+
+  .example-container__title-todo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .example-container__value {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      color: var(--color-txt-white-black);
+      background-color: var(--background-white-black);
+      margin-right: 50px;
+    }
+  }
+
+  h2 {
+    color: var(--btn-txt-color);
+  }
+
+  .example-list {
+    border: solid 1px #ccc;
+    min-height: 60px;
+    background: var(--background-example-list);
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+  }
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: var(--color-text-example-box);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: grab;
+  background: var(--background-white-black);
+  font-size: 14px;
+
+  &__text {
+    cursor: pointer;
+  }
+
+  &__button-bin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+
+    img {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+  }
+}
+
+.example-box__done {
+  text-decoration: line-through;
+  background-color: var(--background-white-black);
+  border-bottom: solid 1px #ababab;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
