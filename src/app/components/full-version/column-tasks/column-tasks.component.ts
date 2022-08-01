@@ -14,13 +14,13 @@ import {MatDialog} from "@angular/material/dialog";
 export class ColumnTasksComponent {
   public readonly status: typeof Status = Status;
 
-  @Input() countTask!: number;
-  @Input() allTasks?: ITask[];
-  @Input() allStatus?: ITask[];
-  @Input() getStatus!: Status;
-  @Input() title!: string;
+  @Input() public countTask!: number;
+  @Input() public allTasks?: ITask[];
+  @Input() public allStatus?: ITask[];
+  @Input() public getStatus!: Status;
+  @Input() public title!: string;
 
-  @Output() updateAllTasks: EventEmitter<ITask[]> = new EventEmitter<ITask[]>();
+  @Output() public updateAllTasks: EventEmitter<ITask[]> = new EventEmitter<ITask[]>();
 
   constructor(public dialog: MatDialog) {}
 
