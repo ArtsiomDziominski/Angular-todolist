@@ -1,6 +1,10 @@
 :host {
   max-width: 675px;
   margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .time {
     position: absolute;
@@ -12,13 +16,11 @@
       display: flex;
       justify-content: flex-end;
       position: relative;
-      top: -80px;
+      top: -10px;
     }
 
     h1 {
-      margin-left: 0;
-      font-size: 80px;
-      color: var(--btn-txt-color);
+      margin: 0 40px 0 0;
     }
   }
 
@@ -27,7 +29,7 @@
   }
 
   h1 {
-    margin: 0;
+    margin-bottom: 40px;
     font-size: 80px;
     color: var(--btn-txt-color);
   }

@@ -1,57 +1,16 @@
-* {
+:host {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
   margin: 0;
-  font-family: Poppins, Arial, sans-serif;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-.light-mode {
-  --btn-txt-color: #ffffff;
-  --color-text-example-box: black;
-  --txt-clolor-white-black: #1d2238;
-  --background-black-grey: gray;
-  --btn-background: #3e82c3;
-  --background-white-black: #f2f2f2;
-  --color-txt-white-black: #111827;
-  --background-example-list: white;
-}
-
-.dark-mode {
-  --btn-txt-color: #afb3b1;
-  --color-text-example-box: #afb3b1;
-  --txt-clolor-white-black: #ffffff;
-  --background-black-grey: #1a1a1a;
-  --btn-background: #3c3f41;
-  --background-white-black: #2b2b2b;
-  --color-txt-white-black: #f2f2f2;
-  --background-example-list: #4d4a4a;
-}
-
-app-fullversion {
-  display: inline;
-}
-
-button {
-  border: 0;
-  border-radius: 5px;
-  background-color: var(--btn-background);
-  color: var(--btn-txt-color);
-  height: 40px;
-}
-
-.button__toggle-mode {
-  position: absolute;
-  top: 10px;
-  left: 120px;
-}
-
-.button__toggle-version {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-@media screen and (max-width: 1200px) {
-  .time {
-    display: none;
+@media screen and (max-width: 500px) {
+  body {
+    display: block;
   }
 }
-

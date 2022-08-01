@@ -10,10 +10,8 @@ import {ITask, Status} from "../../interface/tasks";
 export class TaskComponent {
   public readonly Status: typeof Status = Status;
 
-  @Input()
-  task?: ITask;
-  @Output()
-  changeStatus: EventEmitter<void> = new EventEmitter<void>();
+  @Input() public task?: ITask;
+  @Output() public changeStatus: EventEmitter<void> = new EventEmitter<void>();
 
   public toggleDoneTask(): void {
     this.changeStatus.emit();

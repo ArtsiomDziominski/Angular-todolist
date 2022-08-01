@@ -1,0 +1,27 @@
+<ng-container *ngIf="task">
+  <div class="container">
+    <button mat-raised-button color="primary" [routerLink]="'/'">< Back</button>
+    <img class="delete-task__bin" src="../../../assets/bin.svg" (click)="openDialog(task.id)"
+         alt="bin">
+  </div>
+
+  <p class="task-name" *ngIf="!isEditTask" (click)="isEditTask=!isEditTask">{{task.name}}</p>
+  <input type="text" class="task-name-input" *ngIf="isEditTask" [(ngModel)]="task.name" (keydown.enter)="editTask(task.id, task.name)">
+  <div>
+    <button mat-raised-button color="primary" *ngIf="isEditTask" (click)="editTask(task.id, task.name)">Save</button>
+    <button mat-raised-button color="primary" *ngIf="isEditTask" (click)="isEditTask=!isEditTask">Cancel</button>
+  </div>
+
+  <div class="select-drop-down">
+    <p>Status: </p>
+    <mat-form-field appearance="fill">
+      <mat-select [(value)]="task.status">
+        <mat-option value="todo"  (click)="changeStatus(task.name, status.ToDo)">ToDo</mat-option>
+        <mat-option value="inProgress"  (click)="changeStatus(task.name, status.InProgress)">InProgress</mat-option>
+        <mat-option value="done" (click)="changeStatus(task.name, status.Done)">Done</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <p>{{task.date | date:'EEEE, MMMM d, y, h:mm:ss a'}}</p>
+</ng-container>

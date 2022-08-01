@@ -1,43 +1,10 @@
-<app-input (changeStatusAllTasks)="updateAllTasks($event)"></app-input>
+<app-input (changeStatusAllTasks)="updateAllTasks($event)" [allTasks]="allTasks"></app-input>
 
 <div cdkDropListGroup>
-  <div class="example-container">
-    <h2>To do</h2>
-    <div cdkDropList
-         [cdkDropListData]="allTasks"
-         class="example-list"
-         #toDolist="cdkDropList"
-         [cdkDropListConnectedTo]="[doneList]"
-         (cdkDropListDropped)="drop($event, status.ToDo)">
-      <div class="example-box" *ngFor="let item of todo()" cdkDrag [cdkDragData]="item">{{item.name}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>In progress</h2>
-    <div cdkDropList
-         #doneList="cdkDropList"
-         [cdkDropListData]="inProgress()"
-         class="example-list"
-         [cdkDropListConnectedTo]="[toDolist]"
-         (cdkDropListDropped)="drop($event, status.InProgress)">
-      <div class="example-box" *ngFor="let item of inProgress()" cdkDrag [cdkDragData]="item">{{item.name}}</div>
-    </div>
-  </div>
-
-  <div class="example-container">
-    <h2>Done</h2>
-    <div cdkDropList
-         #doneList="cdkDropList"
-         [cdkDropListData]="done()"
-         class="example-list"
-         [cdkDropListConnectedTo]="[toDolist]"
-         (cdkDropListDropped)="drop($event, status.Done)">
-      <div class="example-box example-box__done" *ngFor="let item of done()" cdkDrag [cdkDragData]="item">{{item.name}}
-        <div class="example-box__button-bin">
-          <img src="../../../assets/bin.svg" (click)="deleteOneTask(item.name)" alt="Delete task">
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-column-tasks [countTask]="countToDoTask()" [allStatus]="todo" [getStatus]="status.ToDo" [allTasks]="allTasks"
+                    [title]="'To Do'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
+  <app-column-tasks [countTask]="countInProgressTask()" [allStatus]="inProgress" [getStatus]="status.InProgress"
+                    [allTasks]="allTasks" [title]="'In Progress'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
+  <app-column-tasks [countTask]="countDoneTask()" [allStatus]="done" [getStatus]="status.Done" [allTasks]="allTasks"
+                    [title]="'Done'" (updateAllTasks)="updateAllTasks($event)"></app-column-tasks>
 </div>

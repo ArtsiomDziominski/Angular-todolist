@@ -20,12 +20,13 @@
         </div>
         <div class="dashboard-info__item" *ngIf="countDoneTask()">
           <button class="dashboard-info__btn-delete"
-                  (click)="deleteDoneTask()"><img src="../../../assets/bin.svg" alt="Delete done task">Tasks done
+                  (click)="deleteDoneTask()"><img src="../../../assets/bin-mini-version.svg" alt="Delete done task">Tasks
+            done
           </button>
         </div>
         <div class="dashboard-info__item" *ngIf="allTasks.length">
           <button class="dashboard-info__btn-delete"
-                  (click)="deleteAllTasks()"><img src="../../../assets/bin.svg" alt="Delete task">Tasks
+                  (click)="deleteAllTasks()"><img src="../../../assets/bin-mini-version.svg" alt="Delete task">Tasks
           </button>
         </div>
       </div>
@@ -40,7 +41,7 @@
             <app-task [task]="task" (changeStatus)="toggleDoneTask(task)"></app-task>
 
             <div class="task-list__btn">
-              <img class="task-list__bin" src="../../../assets/bin.svg" (click)="deleteOneTask(task.name)"
+              <img class="task-list__bin" src="../../../assets/bin.svg" (click)="openDialog(task.id)"
                    alt="Delete task">
             </div>
           </div>
@@ -49,7 +50,7 @@
       <div class="task-new">
         <div class="task-new__field">
 
-          <app-input (changeStatusAllTasks)="updateAllTasks($event)"></app-input>
+          <app-input (changeStatusAllTasks)="updateAllTasks($event)" [allTasks]="allTasks"></app-input>
 
         </div>
       </div>

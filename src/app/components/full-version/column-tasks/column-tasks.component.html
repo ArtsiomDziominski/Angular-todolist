@@ -1,0 +1,18 @@
+<div class="example-container">
+  <div class="example-container__title-todo">
+    <h2>{{title}}</h2>
+    <p class="example-container__value">{{countTask}}</p>
+  </div>
+  <div cdkDropList
+       class="example-list"
+       (cdkDropListDropped)="dropDown($event, getStatus)">
+    <div class="example-box" *ngFor="let task of allStatus" cdkDrag [cdkDragData]="task">
+      <div class="example-box__text" [routerLink]="'/details/'+ task.id">
+        {{task.name}}
+      </div>
+      <div class="example-box__button-bin">
+        <img src="../../../../assets/bin.svg" (click)="openDialog(task.id)" alt="Delete task">
+      </div>
+    </div>
+  </div>
+</div>

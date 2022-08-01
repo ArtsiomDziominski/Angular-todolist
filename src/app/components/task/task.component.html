@@ -1,3 +1,4 @@
-<img (click)="toggleDoneTask()" class="task-list__img-toggle" [class.task-list__item--task-completed]="task!.status === Status.Done"
+<img (click)="toggleDoneTask()" class="task-list__img-toggle"
+     [class.task-list__item--task-completed]="task!.status === Status.Done"
      src="../../../assets/check.svg" alt="checkbox">
-<p>{{ task?.name }}<p>
+<p [routerLink]="'/details/'+ task?.id">{{ task?.name }}<p>

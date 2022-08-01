@@ -1,0 +1,40 @@
+:host {
+  height: 95vh;
+  text-align: center;
+  color: #E0E0E0;
+  font-family: Poppins, monospace;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-family: Poppins, monospace;
+}
+
+div {
+  transform-style: preserve-3d;
+}
+
+svg {
+  width: clamp(300px, 70%, 600px);
+  height: 500px;
+
+}
+
+.text {
+  opacity: 0;
+  animation: appear 1s ease-in forwards;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+a {
+  color: #F66947;
+  text-decoration: none;
+}
