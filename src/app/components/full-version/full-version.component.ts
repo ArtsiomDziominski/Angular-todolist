@@ -45,5 +45,6 @@ export class FullVersionComponent {
 
   public updateAllTasks($event: ITask[]): void {
     this.allTasks = $event;
+    console.log(this.allTasks)
   }
 }

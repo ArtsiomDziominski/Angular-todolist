@@ -1,0 +1,27 @@
+:host {
+  width: 100vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bar {
+  fill: #cde8fd;
+}
+
+.bar:hover {
+  fill: #ff0000;
+}
+
+.axis-title {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 0.3px;
+}
+
+h2, svg {
+  color: white;
+}
+svg {
+
+}

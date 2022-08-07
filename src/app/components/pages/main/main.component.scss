@@ -49,6 +49,12 @@ button {
   left: 10px;
 }
 
+.button__dashboard {
+  position: absolute;
+  top: 10px;
+  left: 220px;
+}
+
 @media screen and (max-width: 1200px) {
   .time {
     display: none;

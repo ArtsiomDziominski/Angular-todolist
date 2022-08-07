@@ -5,6 +5,8 @@
   <button class="button__toggle-mode" (click)="ToggleDarkMode()">{{!isToggleDarkMode ? 'Dark Mode' : 'Light Mode'}}
   </button>
 
+  <button class="button__dashboard" [routerLink]="'/dashboard'">Graph</button>
+
   <app-full-version *ngIf="isFullVersion; else miniVersion"></app-full-version>
 
   <ng-template #miniVersion>
