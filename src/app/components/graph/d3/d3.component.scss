@@ -6,22 +6,16 @@
   align-items: center;
 }
 .bar {
-  fill: #cde8fd;
+  fill: #2e9fff;
 }
 
 .bar:hover {
-  fill: #ff0000;
+  fill: #ff5555;
 }
 
 .axis-title {
   fill: none;
-  stroke: #ffffff;
-  stroke-width: 0.3px;
-}
-
-h2, svg {
-  color: white;
-}
-svg {
-
+  stroke: #000000;
+  stroke-width: 0.5px;
+  font-size: 15px;
 }

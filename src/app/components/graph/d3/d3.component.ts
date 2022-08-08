@@ -1,11 +1,8 @@
-import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewEncapsulation} from '@angular/core';
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
-import {getFromLocalStorage} from "../../../get-from-local-storage";
-import {STORAGE_ALL_TASKS_KEY} from "../../const";
-import {ITask} from "../../../interface/tasks";
 import {Frequency} from "../../../interface/frequency";
 
 @Component({
@@ -14,13 +11,7 @@ import {Frequency} from "../../../interface/frequency";
   templateUrl: './d3.component.html',
   styleUrls: ['./d3.component.scss']
 })
-export class D3Component implements OnInit, AfterViewInit {
-  public amountTaskToDo: number = 0;
-  public amountTaskInProgress: number = 0;
-  public amountTaskDone: number = 0;
-  public allTasks: ITask[] = [];
-
-  public statistics: Frequency[] = [];
+export class D3Component implements AfterViewInit {
 
   private width!: number;
   private height!: number;
@@ -31,30 +22,7 @@ export class D3Component implements OnInit, AfterViewInit {
   private svg: any;
   private g: any;
 
-  public saveAmountTasks(name: string, amount: number): void {
-    this.statistics.push({letter: name, frequency: amount});
-  }
-
-  public ngOnInit(): void {
-    let toDo:string = 'To Do';
-    let InProgress:string = 'In Progress';
-    let Done:string = 'Done';
-
-    let allTasks: string | null = getFromLocalStorage(STORAGE_ALL_TASKS_KEY);
-    this.allTasks = JSON.parse(<string>allTasks);
-    this.allTasks.forEach((count) => {
-      if (count.status === 'todo') {
-        this.amountTaskToDo++;
-      } else if (count.status === 'inProgress') {
-        this.amountTaskInProgress++;
-      } else if (count.status === 'done') {
-        this.amountTaskDone++;
-      }
-    })
-    this.saveAmountTasks(toDo, this.amountTaskToDo);
-    this.saveAmountTasks(InProgress, this.amountTaskInProgress);
-    this.saveAmountTasks(Done, this.amountTaskDone);
-  }
+  @Input() public statistics!: Frequency[];
 
   public ngAfterViewInit(): void {
     this.initSvg();
@@ -63,7 +31,7 @@ export class D3Component implements OnInit, AfterViewInit {
     this.drawBars();
   }
 
-  private initSvg() {
+  private initSvg(): void {
     this.svg = d3.select('#bar-d3');
     this.width = +this.svg.attr('width') - this.margin.left - this.margin.right;
     this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
@@ -75,7 +43,7 @@ export class D3Component implements OnInit, AfterViewInit {
       );
   }
 
-  private initAxis() {
+  private initAxis(): void {
     this.x = d3Scale
       .scaleBand()
       .rangeRound([0, this.width])
@@ -85,7 +53,7 @@ export class D3Component implements OnInit, AfterViewInit {
     this.y.domain([0, d3Array.max(this.statistics, d => d.frequency)]);
   }
 
-  private drawAxis() {
+  private drawAxis(): void {
     this.g
       .append('g')
       .attr('class', 'axis axis--x')
@@ -101,10 +69,10 @@ export class D3Component implements OnInit, AfterViewInit {
       .attr('y', -40)
       .attr('x', -200)
       .attr('dy', '0.71em')
-      .text('Amount');
+      .text('Amount, pcs');
   }
 
-  private drawBars() {
+  private drawBars(): void {
     this.g
       .selectAll('.bar')
       .data(this.statistics)

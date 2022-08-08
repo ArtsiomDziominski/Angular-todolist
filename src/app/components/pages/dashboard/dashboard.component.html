@@ -1,1 +1,21 @@
-<app-d3></app-d3>
+<div class="container">
+  <button mat-raised-button color="primary" [routerLink]="'/'">< Назад</button>
+
+  <div class="drop-down">
+    <mat-form-field appearance="fill">
+      <mat-label>Graph</mat-label>
+      <mat-select value="d3-bar">
+        <mat-option value="d3-bar" (click)="isToggleGraph=!isToggleGraph">d3 bar</mat-option>
+        <mat-option value="chart-bar" (click)="isToggleGraph=!isToggleGraph">Chart.js bar</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ng-template [ngIf]="isToggleGraph">
+    <app-d3 [statistics]="statistics"></app-d3>
+  </ng-template>
+
+  <ng-template [ngIf]="!isToggleGraph">
+    <app-chart-js [statistics]="statistics"></app-chart-js>
+  </ng-template>
+</div>
