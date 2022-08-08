@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   public amountTaskToDo: number = 0;
   public amountTaskInProgress: number = 0;
   public amountTaskDone: number = 0;
-  isToggleGraph: boolean = true;
+  public isToggleGraph: boolean = true;
 
   public allTasks: ITask[] = [];
 

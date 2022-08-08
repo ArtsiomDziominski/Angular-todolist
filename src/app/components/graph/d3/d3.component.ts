@@ -32,9 +32,12 @@ export class D3Component implements AfterViewInit {
   }
 
   private initSvg(): void {
-    this.svg = d3.select('#bar-d3');
-    this.width = +this.svg.attr('width') - this.margin.left - this.margin.right;
-    this.height = +this.svg.attr('height') - this.margin.top - this.margin.bottom;
+    this.svg = d3.select('#bar-d3')
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .attr('viewBox', '0 0 900 500');
+    this.width = 900 - this.margin.left - this.margin.right;
+    this.height = 500 - this.margin.top - this.margin.bottom;
     this.g = this.svg
       .append('g')
       .attr(
