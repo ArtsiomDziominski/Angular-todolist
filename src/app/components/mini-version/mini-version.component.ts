@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {ITask, Status} from "../../interface/tasks";
 import {updateLocalStorage} from "../../update-local-storage";
 import {getFromLocalStorage} from "../../get-from-local-storage";
-import {STORAGE_ALL_TASKS_KEY} from "../const";
+import {STORAGE_ALL_TASKS_KEY} from "../const/const";
 import {DialogBoxForDeleteComponent} from "../dialog-box-for-delete/dialog-box-for-delete.component";
 import {MatDialog} from "@angular/material/dialog";
 

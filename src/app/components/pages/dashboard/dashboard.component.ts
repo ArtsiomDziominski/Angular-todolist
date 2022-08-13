@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {HostListener, Component, OnInit} from '@angular/core';
 import {getFromLocalStorage} from "../../../get-from-local-storage";
-import {STORAGE_ALL_TASKS_KEY} from "../../const";
-import {ITask} from "../../../interface/tasks";
-import {Frequency} from "../../../interface/frequency";
+import {STORAGE_ALL_TASKS_KEY} from "../../const/const";
+import {ITask, Status} from "../../../interface/tasks";
+import {AmountTasks} from "../../../interface/amountTasks";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,34 +13,52 @@ export class DashboardComponent implements OnInit {
   public amountTaskToDo: number = 0;
   public amountTaskInProgress: number = 0;
   public amountTaskDone: number = 0;
-  public isToggleGraph: boolean = true;
+  public isGraphD3: boolean = true;
+  public status?: Status;
+  public statusName: string[] = [];
+  public statusAmount: number[] = [];
+  public windowWidth!:number;
 
   public allTasks: ITask[] = [];
 
-  public statistics: Frequency[] = [];
+  public statistics: AmountTasks[] = [];
 
   public saveAmountTasks(name: string, amount: number): void {
-    this.statistics.push({letter: name, frequency: amount});
+    this.statistics.push({name: name, amount: amount});
   }
 
   public ngOnInit(): void {
-    let toDo: string = 'To Do';
-    let InProgress: string = 'In Progress';
-    let Done: string = 'Done';
-
     let allTasks: string | null = getFromLocalStorage(STORAGE_ALL_TASKS_KEY);
     this.allTasks = JSON.parse(<string>allTasks);
     this.allTasks.forEach((count) => {
-      if (count.status === 'todo') {
-        this.amountTaskToDo++;
-      } else if (count.status === 'inProgress') {
-        this.amountTaskInProgress++;
-      } else if (count.status === 'done') {
-        this.amountTaskDone++;
+      switch (count.status) {
+        case Status.ToDo:
+          this.amountTaskToDo++;
+          break;
+        case Status.InProgress:
+          this.amountTaskInProgress++;
+          break;
+        case Status.Done:
+          this.amountTaskDone++;
       }
     })
-    this.saveAmountTasks(toDo, this.amountTaskToDo);
-    this.saveAmountTasks(InProgress, this.amountTaskInProgress);
-    this.saveAmountTasks(Done, this.amountTaskDone);
+    this.saveAmountTasks(Status.ToDo, this.amountTaskToDo);
+    this.saveAmountTasks(Status.InProgress, this.amountTaskInProgress);
+    this.saveAmountTasks(Status.Done, this.amountTaskDone);
+
+    this.statistics.forEach(name => {
+      this.statusName.push(name.name);
+      this.statusAmount.push(name.amount);
+    });
   }
+
+  public toggleGraph(): void {
+    this.isGraphD3=!this.isGraphD3;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.windowWidth = event.target.innerWidth-40;
+  }
+
 }

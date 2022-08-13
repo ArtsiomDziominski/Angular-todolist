@@ -1,26 +1,26 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {Chart, registerables} from 'chart.js';
 import {AmountTasks} from "../../../interface/amountTasks";
+import {Chart, registerables} from "chart.js";
 import {CHART_BACKGROUND_COLOR, CHART_BORDER_COLOR, CHART_BORDER_WIDTH, CHART_LABEL} from "../../const/graph";
 
 @Component({
-  selector: 'app-chart-js',
-  templateUrl: './chart-js.component.html',
-  styleUrls: ['./chart-js.component.scss']
+  selector: 'app-chart-js-pie',
+  templateUrl: './chart-js-pie.component.html',
+  styleUrls: ['./chart-js-pie.component.scss']
 })
-export class ChartJsComponent implements OnInit {
+export class ChartJsPieComponent implements OnInit {
   @Input() public windowWidth!: number;
   @Input() public statistics!: AmountTasks[];
   @Input() public statusName!: string[];
   @Input() public statusAmount!: number[];
 
   constructor() {
-    Chart.register(...registerables)
+    Chart.register(...registerables);
   }
 
   public ngOnInit(): void {
-    const myChart = new Chart("chart", {
-      type: 'bar',
+    const myChart = new Chart("chart-pie", {
+      type: 'pie',
       data: {
         labels: this.statusName,
         datasets: [{
@@ -30,13 +30,6 @@ export class ChartJsComponent implements OnInit {
           borderColor: CHART_BORDER_COLOR,
           borderWidth: CHART_BORDER_WIDTH
         }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
       }
     });
   }
@@ -45,8 +38,8 @@ export class ChartJsComponent implements OnInit {
   onResize() {
     let width:any = document.getElementsByClassName( 'chart' );
     if (this.windowWidth < 1000) {
-      width[0].style.width = `${this.windowWidth}px`
-      width[0].style.height = `${100}%`
+      width[2].style.width = `${this.windowWidth}px`
+      width[2].style.height = `${100}%`
     }
   }
 }

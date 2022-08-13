@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITask, Status} from "../../interface/tasks";
 import {getFromLocalStorage} from "../../get-from-local-storage";
 import {updateLocalStorage} from "../../update-local-storage";
-import {STORAGE_ALL_TASKS_KEY} from "../const";
+import {STORAGE_ALL_TASKS_KEY} from "../const/const";
 
 @Component({
   selector: 'app-input',
