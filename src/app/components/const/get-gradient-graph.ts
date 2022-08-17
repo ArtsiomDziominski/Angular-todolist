@@ -1,6 +1,7 @@
-let width:number, height:number, gradient:any;
-
 export function getGradient(ctx:any, chartArea:any) {
+  let width:number = 0;
+  let height:number = 0;
+  let gradient:any;
   const chartWidth = chartArea.right - chartArea.left;
   const chartHeight = chartArea.bottom - chartArea.top;
   if (!gradient || width !== chartWidth || height !== chartHeight) {

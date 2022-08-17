@@ -1,7 +1,6 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {AmountTasks} from "../../../interface/amountTasks";
 import {Chart, registerables} from "chart.js";
-import {getGradient} from "../../const/get-gradient-graph";
 import {
   CHART_BACKGROUND_COLOR,
   CHART_BELOW,
@@ -9,6 +8,7 @@ import {
   CHART_BORDER_WIDTH, CHART_LABEL,
   CHART_TENSION
 } from "../../const/graph";
+import {getGradient} from "../../const/get-gradient-graph";
 
 @Component({
   selector: 'app-chart-js-line',
@@ -20,6 +20,8 @@ export class ChartJsLineComponent implements OnInit {
   @Input() public statistics!: AmountTasks[];
   @Input() public statusName!: string[];
   @Input() public statusAmount!: number[];
+
+  public elementCanvas: any;
 
   constructor() {
     Chart.register(...registerables);
@@ -61,12 +63,17 @@ export class ChartJsLineComponent implements OnInit {
     return getGradient(ctx, chartArea);
   }
 
+  @ViewChild('chart')
+  public set pane(v: 'chart') {
+    // @ts-ignore
+    this.elementCanvas = v.nativeElement;
+  }
+
   @HostListener('window:resize', ['$event'])
-  onResize() {
-    let width:any = document.getElementsByClassName('chart');
-    if (this.windowWidth < 1000) {
-      width[1].style.width = `${this.windowWidth}px`
-      width[1].style.height = `${100}%`
+  public onResize(): void {
+    if (this.windowWidth < 950) {
+      this.elementCanvas.style.width = `${this.windowWidth}px`
+      this.elementCanvas.style.height = `${100}%`
     }
   }
 }

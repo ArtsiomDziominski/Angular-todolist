@@ -24,10 +24,10 @@ import {ColumnTasksComponent} from './components/full-version/column-tasks/colum
 import {DashboardComponent} from './components/pages/dashboard/dashboard.component';
 import {D3Component} from './components/graph/d3/d3.component';
 import {ChartJsComponent} from './components/graph/chart-js/chart-js.component';
-import { ChartJsLineComponent } from './components/graph/chart-js-line/chart-js-line.component';
-import { ChartJsPieComponent } from './components/graph/chart-js-pie/chart-js-pie.component';
-import { D3PieComponent } from './components/graph/d3-pie/d3-pie.component';
-import { D3LineComponent } from './components/graph/d3-line/d3-line.component';
+import {ChartJsLineComponent} from './components/graph/chart-js-line/chart-js-line.component';
+import {ChartJsPieComponent} from './components/graph/chart-js-pie/chart-js-pie.component';
+import {D3PieComponent} from './components/graph/d3-pie/d3-pie.component';
+import {D3LineComponent} from './components/graph/d3-line/d3-line.component';
 
 @NgModule({
   declarations: [

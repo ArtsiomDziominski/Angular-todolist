@@ -29,7 +29,7 @@ export class D3LineComponent implements AfterViewInit {
     this.height = this.height - this.margin.top - this.margin.bottom;
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.initSvg();
     this.initAxis();
     this.drawAxis();
@@ -40,7 +40,7 @@ export class D3LineComponent implements AfterViewInit {
 
   }
 
-  private initSvg() {
+  private initSvg(): void {
     this.svg = d3.select('#d3-line')
       .attr('width', '100%')
       .attr('height', '100%')
@@ -49,7 +49,7 @@ export class D3LineComponent implements AfterViewInit {
       .attr('transform', 'translate(' + this.margin.left + ',' + this.margin.top + ')');
   }
 
-  private initAxis() {
+  private initAxis(): void {
     this.x = d3Scale.scalePoint()
       .rangeRound([0, this.width]);
 
@@ -60,7 +60,7 @@ export class D3LineComponent implements AfterViewInit {
     this.y.domain([0, d3Array.max(this.statistics, d => d.amount * 1.2)]);
   }
 
-  private drawAxis() {
+  private drawAxis(): void {
     this.svg.append('g')
       .attr('class', 'axis-line axis--x-line')
       .attr('transform', 'translate(0,' + this.height + ')')
@@ -78,7 +78,7 @@ export class D3LineComponent implements AfterViewInit {
       .text(AMOUNT_PCS);
   }
 
-  private drawLine() {
+  private drawLine(): void {
     this.line = d3Shape.line()
       .curve(d3Shape.curveBumpX)
       .x((d: any) => this.x(d.name))
@@ -91,7 +91,7 @@ export class D3LineComponent implements AfterViewInit {
       .attr('d', this.line);
   }
 
-  public drawArea() {
+  public drawArea(): void {
     this.svg
       .append("path")
       .datum(this.statistics)
@@ -116,7 +116,7 @@ export class D3LineComponent implements AfterViewInit {
       .attr("stop-color", (d: any) => d.color);
   }
 
-  public circle() {
+  public circle(): void {
     let mouseover = (d: any) => {
       let x: number = Number(d.target.cx.animVal.valueAsString) + 10;
       const y: number = Number(d.target.cy.animVal.valueAsString) - 20;
@@ -163,7 +163,7 @@ export class D3LineComponent implements AfterViewInit {
       .on("mouseleave", mouseleave);
   }
 
-  public info() {
+  public info(): void {
     this.svg
       .selectAll('.circle')
       .data(this.statistics)

@@ -19,7 +19,7 @@ export class D3PieComponent implements OnInit {
 
   @Input() public statistics!: AmountTasks[];
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.createSvg();
     this.createColors();
     this.drawChart();

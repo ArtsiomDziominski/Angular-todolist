@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {AmountTasks} from "../../../interface/amountTasks";
 import {Chart, registerables} from "chart.js";
 import {CHART_BACKGROUND_COLOR, CHART_BORDER_COLOR, CHART_BORDER_WIDTH, CHART_LABEL} from "../../const/graph";
@@ -13,6 +13,7 @@ export class ChartJsPieComponent implements OnInit {
   @Input() public statistics!: AmountTasks[];
   @Input() public statusName!: string[];
   @Input() public statusAmount!: number[];
+  private elementCanvas: any;
 
   constructor() {
     Chart.register(...registerables);
@@ -34,12 +35,17 @@ export class ChartJsPieComponent implements OnInit {
     });
   }
 
+  @ViewChild('chart')
+  public set pane(v: 'chart') {
+    // @ts-ignore
+    this.elementCanvas = v.nativeElement;
+  }
+
   @HostListener('window:resize', ['$event'])
-  onResize() {
-    let width:any = document.getElementsByClassName( 'chart' );
-    if (this.windowWidth < 1000) {
-      width[2].style.width = `${this.windowWidth}px`
-      width[2].style.height = `${100}%`
+  public onResize(): void {
+    if (this.windowWidth < 950){
+      this.elementCanvas.style.width = `${this.windowWidth}px`
+      this.elementCanvas.style.height = `${100}%`
     }
   }
 }
