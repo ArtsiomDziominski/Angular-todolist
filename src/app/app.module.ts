@@ -19,8 +19,15 @@ import {MatSelectModule} from "@angular/material/select";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from '@angular/material/dialog';
-import {DialogBoxForDeleteComponent } from './components/dialog-box-for-delete/dialog-box-for-delete.component';
-import { ColumnTasksComponent } from './components/full-version/column-tasks/column-tasks.component';
+import {DialogBoxForDeleteComponent} from './components/dialog-box-for-delete/dialog-box-for-delete.component';
+import {ColumnTasksComponent} from './components/full-version/column-tasks/column-tasks.component';
+import {DashboardComponent} from './components/pages/dashboard/dashboard.component';
+import {D3Component} from './components/graph/d3/d3.component';
+import {ChartJsComponent} from './components/graph/chart-js/chart-js.component';
+import {ChartJsLineComponent} from './components/graph/chart-js-line/chart-js-line.component';
+import {ChartJsPieComponent} from './components/graph/chart-js-pie/chart-js-pie.component';
+import {D3PieComponent} from './components/graph/d3-pie/d3-pie.component';
+import {D3LineComponent} from './components/graph/d3-line/d3-line.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,15 @@ import { ColumnTasksComponent } from './components/full-version/column-tasks/col
     NotFoundComponent,
     MainComponent,
     DialogBoxForDeleteComponent,
-    ColumnTasksComponent
+    ColumnTasksComponent,
+    DashboardComponent,
+    D3Component,
+    ChartJsComponent,
+    ChartJsLineComponent,
+    ChartJsPieComponent,
+    D3PieComponent,
+    D3LineComponent,
+
   ],
   imports: [
     BrowserModule,

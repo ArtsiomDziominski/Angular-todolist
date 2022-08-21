@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {ITask, Status} from "../../../interface/tasks";
 import {updateLocalStorage} from "../../../update-local-storage";
-import {STORAGE_ALL_TASKS_KEY} from "../../const";
+import {STORAGE_ALL_TASKS_KEY} from "../../const/const";
 import {DialogBoxForDeleteComponent} from "../../dialog-box-for-delete/dialog-box-for-delete.component";
 import {MatDialog} from "@angular/material/dialog";
 

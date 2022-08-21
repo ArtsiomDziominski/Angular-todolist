@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {getFromLocalStorage} from "../../../get-from-local-storage";
-import {STORAGE_DARK_MODE_KEY, STORAGE_VERSION_KEY} from "../../const";
+import {STORAGE_DARK_MODE_KEY, STORAGE_VERSION_KEY} from "../../const/const";
 import {updateLocalStorage} from "../../../update-local-storage";
 
 @Component({

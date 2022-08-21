@@ -1,0 +1,26 @@
+<div class="container">
+  <button mat-raised-button color="primary" [routerLink]="'/'">< Back</button>
+
+  <div class="button-toggle-graph">
+    <button mat-raised-button color="primary" (click)="toggleGraph()">{{isGraphD3 ? 'Chart.js' : 'd3'}}</button>
+  </div>
+
+  <app-d3 [statistics]="statistics" *ngIf="isGraphD3; else chartJs"></app-d3>
+  <app-d3-line [statistics]="statistics" *ngIf="isGraphD3"></app-d3-line>
+  <app-d3-pie [statistics]="statistics" *ngIf="isGraphD3"></app-d3-pie>
+
+  <ng-template #chartJs>
+    <app-chart-js [statistics]="statistics"
+                  [statusName]="statusName"
+                  [statusAmount]="statusAmount"
+                  [windowWidth]="windowWidth"></app-chart-js>
+    <app-chart-js-line [statistics]="statistics"
+                       [statusName]="statusName"
+                       [statusAmount]="statusAmount"
+                       [windowWidth]="windowWidth"></app-chart-js-line>
+    <app-chart-js-pie [statistics]="statistics"
+                      [statusName]="statusName"
+                      [statusAmount]="statusAmount"
+                      [windowWidth]="windowWidth"></app-chart-js-pie>
+  </ng-template>
+</div>

@@ -1,0 +1,29 @@
+.area-line {
+  fill: url(#linear-gradient);
+  fill-opacity: 1;
+  stroke: none;
+}
+
+.line {
+  fill: none;
+  stroke: rgb(71,113,185);
+  stroke-width: 3;
+
+  &:hover {
+    stroke: red;
+    stroke-width: 6;
+  }
+}
+
+.circle {
+  fill: #3c64b9;
+  &:hover {
+    fill: #ff0000;
+  }
+}
+
+.text {
+  font-size: 15px;
+  cursor: default;
+  fill: black;
+}

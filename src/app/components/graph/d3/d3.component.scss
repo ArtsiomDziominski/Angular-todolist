@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bar {
+  fill: #2e9fff;
+}
+
+.bar:hover {
+  fill: #ff2929;
+}
+
+.axis-title-bar {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 0.5px;
+  font-size: 15px;
+}
