@@ -6,6 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![Снимок экрана 2022-08-22 141138](https://user-images.githubusercontent.com/86887225/185897472-47849987-17fc-46f0-b692-73990bdab34e.png)
 ![Снимок экрана 2022-08-22 141222](https://user-images.githubusercontent.com/86887225/185897479-ad051cfc-304c-42a4-9230-ba39b336d73f.png)
 ![Снимок экрана 2022-08-22 141153](https://user-images.githubusercontent.com/86887225/185897475-7062d7dc-e16b-4482-9bd7-b845367b3020.png)
+![Снимок экрана 2022-08-13 162328](https://user-images.githubusercontent.com/86887225/185897614-70f4abe2-cf1e-40b9-a51d-8b98170e28b1.png)
+![Снимок экрана 2022-08-13 162349](https://user-images.githubusercontent.com/86887225/185897623-71860dc4-06cd-4f43-a096-0f9ad4793425.png)
+
 
 
 ## Development server
