@@ -8,7 +8,6 @@ import {FullVersionComponent} from './components/full-version/full-version.compo
 import {MiniVersionComponent} from './components/mini-version/mini-version.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {InputComponent} from './components/input/input.component';
-import {DetailComponent} from './components/pages/detail/detail.component';
 import {NotFoundComponent} from './components/pages/not-found/not-found.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
@@ -21,13 +20,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogBoxForDeleteComponent} from './components/dialog-box-for-delete/dialog-box-for-delete.component';
 import {ColumnTasksComponent} from './components/full-version/column-tasks/column-tasks.component';
-import {DashboardComponent} from './components/pages/dashboard/dashboard.component';
-import {D3Component} from './components/graph/d3/d3.component';
-import {ChartJsComponent} from './components/graph/chart-js/chart-js.component';
-import {ChartJsLineComponent} from './components/graph/chart-js-line/chart-js-line.component';
-import {ChartJsPieComponent} from './components/graph/chart-js-pie/chart-js-pie.component';
-import {D3PieComponent} from './components/graph/d3-pie/d3-pie.component';
-import {D3LineComponent} from './components/graph/d3-line/d3-line.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -36,19 +29,10 @@ import {D3LineComponent} from './components/graph/d3-line/d3-line.component';
     FullVersionComponent,
     MiniVersionComponent,
     InputComponent,
-    DetailComponent,
     NotFoundComponent,
     MainComponent,
     DialogBoxForDeleteComponent,
     ColumnTasksComponent,
-    DashboardComponent,
-    D3Component,
-    ChartJsComponent,
-    ChartJsLineComponent,
-    ChartJsPieComponent,
-    D3PieComponent,
-    D3LineComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -63,9 +47,11 @@ import {D3LineComponent} from './components/graph/d3-line/d3-line.component';
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
