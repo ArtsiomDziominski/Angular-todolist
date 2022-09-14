@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ITask, Status} from "../../interface/tasks";
-import {getFromLocalStorage} from "../../get-from-local-storage";
 import {STORAGE_ALL_TASKS_KEY} from "../const/const";
+import {LocalStorageService} from "../../service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-full-version',
@@ -9,10 +9,13 @@ import {STORAGE_ALL_TASKS_KEY} from "../const/const";
   styleUrls: ['./full-version.component.scss']
 })
 
-export class FullVersionComponent {
+export class FullVersionComponent implements OnInit{
   public readonly status: typeof Status = Status;
   public allTasks: ITask[] = [];
   public name: string = '';
+
+  constructor(private localStorageService: LocalStorageService) {
+  }
 
   public countToDoTask(): number {
     return this.allTasks.filter((task) => task.status === Status.ToDo).length;
@@ -26,8 +29,8 @@ export class FullVersionComponent {
     return this.allTasks.filter((task) => task.status === Status.Done).length;
   }
 
-  constructor() {
-    let getListTask:string = getFromLocalStorage(STORAGE_ALL_TASKS_KEY) || '[]';
+  public ngOnInit(): void {
+    let getListTask:string = this.localStorageService.getFromLocalStorage(STORAGE_ALL_TASKS_KEY) || '[]';
     this.allTasks = JSON.parse(getListTask);
   }
 

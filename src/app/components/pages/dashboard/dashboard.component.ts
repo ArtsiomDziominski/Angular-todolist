@@ -1,8 +1,8 @@
 import {HostListener, Component, OnInit} from '@angular/core';
-import {getFromLocalStorage} from "../../../get-from-local-storage";
 import {STORAGE_ALL_TASKS_KEY} from "../../const/const";
 import {ITask, Status} from "../../../interface/tasks";
 import {AmountTasks} from "../../../interface/amountTasks";
+import {LocalStorageService} from "../../../service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,12 +23,15 @@ export class DashboardComponent implements OnInit {
 
   public statistics: AmountTasks[] = [];
 
+  constructor(private localStorageService: LocalStorageService) {
+  }
+
   public saveAmountTasks(name: string, amount: number): void {
     this.statistics.push({name: name, amount: amount});
   }
 
   public ngOnInit(): void {
-    let allTasks: string | null = getFromLocalStorage(STORAGE_ALL_TASKS_KEY);
+    let allTasks: string | null = this.localStorageService.getFromLocalStorage(STORAGE_ALL_TASKS_KEY);
     this.allTasks = JSON.parse(<string>allTasks);
     this.allTasks.forEach((count) => {
       switch (count.status) {
