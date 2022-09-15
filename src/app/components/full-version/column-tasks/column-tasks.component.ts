@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {ITask, Status} from "../../../interface/tasks";
-import {updateLocalStorage} from "../../../update-local-storage";
 import {STORAGE_ALL_TASKS_KEY} from "../../const/const";
 import {DialogBoxForDeleteComponent} from "../../dialog-box-for-delete/dialog-box-for-delete.component";
 import {MatDialog} from "@angular/material/dialog";
+import {LocalStorageService} from "../../../service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-column-tasks',
@@ -22,14 +22,14 @@ export class ColumnTasksComponent {
 
   @Output() public updateAllTasks: EventEmitter<ITask[]> = new EventEmitter<ITask[]>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private localStorageSave: LocalStorageService) {}
 
   public dropDown(event: CdkDragDrop<ITask[]>, status: Status): void {
     let task: ITask | undefined = this.allTasks?.find((item: ITask) => item.id === event.item.data.id);
     if (task) {
       task.status = status;
     }
-    updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
+    this.localStorageSave.updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
   }
 
   public openDialog(id: number): void {
@@ -45,7 +45,7 @@ export class ColumnTasksComponent {
 
   public deleteOneTask(id: number): void {
     this.allTasks = this.allTasks?.filter((task) => task.id !== id);
-    updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
+    this.localStorageSave.updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
     this.updateAllTasks.emit(this.allTasks);
   }
 }

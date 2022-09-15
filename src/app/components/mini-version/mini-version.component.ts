@@ -1,10 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ITask, Status} from "../../interface/tasks";
-import {updateLocalStorage} from "../../update-local-storage";
-import {getFromLocalStorage} from "../../get-from-local-storage";
 import {STORAGE_ALL_TASKS_KEY} from "../const/const";
 import {DialogBoxForDeleteComponent} from "../dialog-box-for-delete/dialog-box-for-delete.component";
 import {MatDialog} from "@angular/material/dialog";
+import {LocalStorageService} from "../../service/local-storage/local-storage.service";
 
 @Component({
   selector: 'app-mini-version',
@@ -12,7 +11,7 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./mini-version.component.scss']
 })
 
-export class MiniVersionComponent {
+export class MiniVersionComponent implements OnInit {
   public readonly title = 'Angular ToDo List';
   public readonly Status: typeof Status = Status;
 
@@ -28,9 +27,14 @@ export class MiniVersionComponent {
     return this.allTasks.filter((task) => task.status === Status.Done).length;
   }
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private localStorageService: LocalStorageService,
+  ) {}
+
+  public ngOnInit(): void {
     this.updateTime();
-    const getListTask: string = getFromLocalStorage(STORAGE_ALL_TASKS_KEY) || '[]';
+    const getListTask: string = this.localStorageService.getFromLocalStorage(STORAGE_ALL_TASKS_KEY) || '[]';
     this.allTasks = JSON.parse(getListTask);
   }
 
@@ -51,17 +55,17 @@ export class MiniVersionComponent {
     } else {
       task.status = Status.Done;
     }
-    updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
+    this.localStorageService.updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
   }
 
   public deleteOneTask(id: number): void {
     this.allTasks = this.allTasks.filter(task => task.id !== id);
-    updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
+    this.localStorageService.updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
   }
 
   public deleteDoneTask(): void {
     this.allTasks = this.allTasks.filter((task) => task.status === Status.ToDo);
-    updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
+    this.localStorageService.updateLocalStorage(STORAGE_ALL_TASKS_KEY, JSON.stringify(this.allTasks));
   }
 
   public deleteAllTasks(): void {
